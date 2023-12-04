@@ -1,6 +1,8 @@
 {
     "name": "clown/captcha",
     "description": "验证码类",
+    "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Clown\\Captcha\\": "src/"
@@ -8,7 +10,8 @@
     },
     "authors": [
         {
-            "name": "clown"
+            "name": "clown",
+            "email": "812827345@qq.com"
         }
     ],
     "minimum-stability": "dev",
