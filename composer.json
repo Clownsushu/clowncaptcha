@@ -1,13 +1,9 @@
 {
     "name": "clown/captcha",
+    "version": "1.0.0",
     "description": "验证码类",
     "type": "library",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Clown\\Captcha\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "clown",
@@ -18,7 +14,7 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "clown\\": "src/"
+            "clown\\captcha\\": "src/"
         },
         "files": [
             "src/helper.php"
