@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Clownsushu/clownredis.git",
-                "reference": "49ae580e7579ff933ffa6bc18dbcc059a0ffe40d"
+                "reference": "c70d8a7b733ca5b97522d82e23037990f4381095"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Clownsushu/clownredis/zipball/49ae580e7579ff933ffa6bc18dbcc059a0ffe40d",
-                "reference": "49ae580e7579ff933ffa6bc18dbcc059a0ffe40d",
+                "url": "https://api.github.com/repos/Clownsushu/clownredis/zipball/c70d8a7b733ca5b97522d82e23037990f4381095",
+                "reference": "c70d8a7b733ca5b97522d82e23037990f4381095",
                 "shasum": "",
                 "mirrors": [
                     {
@@ -48,7 +48,7 @@
                 "issues": "https://github.com/Clownsushu/clownredis/issues",
                 "source": "https://github.com/Clownsushu/clownredis/tree/v1.0.0"
             },
-            "time": "2023-12-04T06:28:07+00:00"
+            "time": "2023-12-04T08:12:35+00:00"
         }
     ],
     "packages-dev": [],

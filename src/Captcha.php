@@ -2,22 +2,35 @@
 namespace clown\captcha;
 
 
-interface Captcha
+use clown\redis\Redis;
+
+class Captcha
 {
     /**
-     * 验证码
-     * @param string $key
-     * @param int $width
-     * @param int $height
-     * @return string
+     * @var string 验证码类型 默认点击验证码click=点击, sliding = 滑块
      */
-    public function captcha($key, $width = 120, $height = 40);
+    public $type = 'click';
 
-    /**
-     * 验证
-     * @param string $key
-     * @param string $code
-     * @return bool
-     */
-    public function verify($key, $code);
+    public function __construct($type = 'click')
+    {
+        $this->type = $type;
+    }
+
+    public function create($key, $width = 120, $height = 40)
+    {
+        switch ($this->type) {
+            case 'click':
+                return new ClickCaptcha($key, $width, $height);
+                break;
+        }
+    }
+
+    public function check($key, $code)
+    {
+        switch ($this->type) {
+            case 'click':
+                return new ClickCaptcha($key);
+        }
+    }
+
 }
