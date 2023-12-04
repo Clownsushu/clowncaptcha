@@ -1,0 +1,23 @@
+{
+    "name": "clown/captcha",
+    "description": "验证码类",
+    "autoload": {
+        "psr-4": {
+            "Clown\\Captcha\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "clown"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "clown\\": "src/"
+        },
+        "files": [
+            "src/helper.php"
+        ]
+    }
+}
