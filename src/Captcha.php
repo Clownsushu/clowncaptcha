@@ -3,7 +3,7 @@ namespace clown\captcha;
 
 
 use clown\captcha\captcha\ClickCaptcha;
-use clown\redis\Redis;
+use clown\captcha\captcha\SlidingCaptcha;
 
 
 class Captcha
@@ -13,6 +13,10 @@ class Captcha
      */
     public $type = 'click';
 
+    /**
+     * 构造函数
+     * @param $type string 验证码类型 click=点击, sliding = 滑块
+     */
     public function __construct($type = 'click')
     {
         $this->type = $type;
@@ -27,9 +31,14 @@ class Captcha
     public function create($key = '', $config = [])
     {
         switch ($this->type) {
-            case 'click':
+            case 'click': // 点击验证码
                 $captcha = new ClickCaptcha($config);
                 break;
+            case 'sliding': // 滑块验证码
+                $captcha = new SlidingCaptcha($config);
+                break;
+            default:
+                $captcha = new ClickCaptcha($config);
         }
 
         return $captcha->captcha($key);
@@ -45,9 +54,14 @@ class Captcha
     public function check($key, $code, $config = [])
     {
         switch ($this->type) {
-            case 'click':
+            case 'click': // 点击验证码
                 $captcha = new ClickCaptcha($config);
                 break;
+            case'sliding': // 滑块验证码
+                $captcha = new SlidingCaptcha($config);
+                break;
+            default:
+                $captcha = new ClickCaptcha($config);
         }
 
         return $captcha->verify($key, $code);

@@ -1,10 +1,12 @@
 <?php
 namespace clown\captcha\captcha;
 
-use ba\Filesystem;
 use clown\redis\Redis;
 
 
+/**
+ * 点击验证码
+ */
 class ClickCaptcha implements Captcha
 {
     /**
@@ -206,6 +208,13 @@ class ClickCaptcha implements Captcha
         ];
     }
 
+    /**
+     * 验证验证码
+     * @param $key string 唯一值
+     * @param $code string 点选内容 200,117-246,106;350;200 200,117第一个点击点的x和y坐标, 246,106第二个点击点的x和y坐标, 350是宽, 200是高
+     * @return bool
+     * @throws \RedisException
+     */
     public function verify($key, $code)
     {
         // TODO: Implement verify() method.
