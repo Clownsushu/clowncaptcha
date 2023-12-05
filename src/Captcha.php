@@ -3,6 +3,7 @@ namespace clown\captcha;
 
 
 use clown\captcha\captcha\ClickCaptcha;
+use clown\captcha\captcha\ComputeCaptcha;
 use clown\captcha\captcha\SlidingCaptcha;
 
 
@@ -37,6 +38,9 @@ class Captcha
             case 'sliding': // 滑块验证码
                 $captcha = new SlidingCaptcha($config);
                 break;
+            case 'compute': // 计算验证码
+                $captcha = new ComputeCaptcha($config);
+                break;
             default:
                 $captcha = new ClickCaptcha($config);
         }
@@ -57,8 +61,11 @@ class Captcha
             case 'click': // 点击验证码
                 $captcha = new ClickCaptcha($config);
                 break;
-            case'sliding': // 滑块验证码
+            case 'sliding': // 滑块验证码
                 $captcha = new SlidingCaptcha($config);
+                break;
+            case 'compute': // 计算验证码
+                $captcha = new ComputeCaptcha($config);
                 break;
             default:
                 $captcha = new ClickCaptcha($config);
