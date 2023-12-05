@@ -7,11 +7,9 @@ interface Captcha
     /**
      * 验证码
      * @param string $key
-     * @param int $width
-     * @param int $height
      * @return string
      */
-    public function captcha($key, $width = 120, $height = 40);
+    public function captcha($key = '');
 
     /**
      * 验证

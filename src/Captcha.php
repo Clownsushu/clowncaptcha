@@ -2,7 +2,9 @@
 namespace clown\captcha;
 
 
+use clown\captcha\captcha\ClickCaptcha;
 use clown\redis\Redis;
+
 
 class Captcha
 {
@@ -16,21 +18,39 @@ class Captcha
         $this->type = $type;
     }
 
-    public function create($key, $width = 120, $height = 40)
+    /**
+     * 创建验证码
+     * @param $key string 唯一值
+     * @param $config array 配置值
+     * @return array
+     */
+    public function create($key = '', $config = [])
     {
         switch ($this->type) {
             case 'click':
-                return new ClickCaptcha($key, $width, $height);
+                $captcha = new ClickCaptcha($config);
                 break;
         }
+
+        return $captcha->captcha($key);
     }
 
-    public function check($key, $code)
+    /**
+     * 验证码校验
+     * @param $key string 唯一值
+     * @param $code string 验证码内容
+     * @param $config array 配置值
+     * @return bool
+     */
+    public function check($key, $code, $config = [])
     {
         switch ($this->type) {
             case 'click':
-                return new ClickCaptcha($key);
+                $captcha = new ClickCaptcha($config);
+                break;
         }
+
+        return $captcha->verify($key, $code);
     }
 
 }
