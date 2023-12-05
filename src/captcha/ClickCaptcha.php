@@ -236,6 +236,8 @@ class ClickCaptcha implements Captcha
             $x  = $xy[0];
             $y  = $xy[1];
             if ($x / $xPro < $captcha['text'][$k]['x'] || $x / $xPro > $captcha['text'][$k]['x'] + $captcha['text'][$k]['width']) {
+                //如果为true 不成功直接删除缓存
+                if($this->config['unset']) $this->redis->del($key);
                 return false;
             }
             $phStart = $captcha['text'][$k]['icon'] ? $captcha['text'][$k]['y'] : $captcha['text'][$k]['y'] - $captcha['text'][$k]['height'];
