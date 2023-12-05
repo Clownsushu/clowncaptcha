@@ -79,6 +79,8 @@ class ClickCaptcha implements Captcha
      * @var array
      */
     private $config = [
+        //验证不成功是否删除
+        'unset' => true,
         //语言
         'lang' => 'zh-cn',
         //验证码类型
@@ -239,9 +241,15 @@ class ClickCaptcha implements Captcha
             $phStart = $captcha['text'][$k]['icon'] ? $captcha['text'][$k]['y'] : $captcha['text'][$k]['y'] - $captcha['text'][$k]['height'];
             $phEnd   = $captcha['text'][$k]['icon'] ? $captcha['text'][$k]['y'] + $captcha['text'][$k]['height'] : $captcha['text'][$k]['y'];
             if ($y / $yPro < $phStart || $y / $yPro > $phEnd) {
+                //如果为true 不成功直接删除缓存
+                if($this->config['unset']) $this->redis->del($key);
                 return false;
             }
         }
+
+        //删除缓存
+        $this->redis->del($key);
+
         return true;
     }
 
