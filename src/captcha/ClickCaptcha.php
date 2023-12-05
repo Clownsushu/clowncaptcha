@@ -62,6 +62,8 @@ class ClickCaptcha implements Captcha
         'dolphin'   => '海豚',
         'fire'      => '火',
         'guitar'    => '吉他',
+        'lobster'   => '龙虾',
+        'ikun'      => '公鸡',
         'hexagon'   => '六角形',
         'pear'      => '梨',
         'rocket'    => '火箭',
