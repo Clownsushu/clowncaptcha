@@ -28,21 +28,6 @@ class NumberCaptcha implements Captcha
      */
     protected $bg = [190, 251, 254];
 
-
-    private $compute = [
-        '+', '-', 'x',
-//        '÷'
-    ];
-
-    /**
-     * @var array|string[] 背景图片路径
-     */
-    private $bg_path = [
-        'click/bgs/1.png',
-        'click/bgs/2.png',
-        'click/bgs/3.png',
-    ];
-
     /**
      * @var array|string[] 字体文件路径
      */
@@ -116,9 +101,12 @@ class NumberCaptcha implements Captcha
         $this->writeCurve();
         //绘制验证码
         $i = 0;
+        $count = count($rands);
+        $width = (int) $this->config['width'] / $count;
+
         foreach ($rands as $k => $v){
             $size = mt_rand(20, 22);
-            $x     = $i == 1 ? ($size * ($i + 1) * 2) : $size * ($i + 1) * 1.8;
+            $x     = $k == 0 ? 10 : $width * $k;
             $y     = $size + mt_rand(20, 30);
             $angle = $i == 1 || $i == 3 ? 1 : mt_rand(1, 20);
             imagettftext($this->image, $size, $angle, (int)$x, (int)$y, $this->color, $fontPath, $v);
@@ -132,8 +120,8 @@ class NumberCaptcha implements Captcha
         $base64 = 'data:image/png;base64,' . base64_encode($content);
 
         return [
-          'key' => $key,
-          'base64' => $base64
+            'key' => $key,
+            'base64' => $base64
         ];
     }
 
