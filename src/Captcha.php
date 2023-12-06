@@ -5,6 +5,7 @@ namespace clown\captcha;
 use clown\captcha\captcha\ClickCaptcha;
 use clown\captcha\captcha\ComputeCaptcha;
 use clown\captcha\captcha\NumberCaptcha;
+use clown\captcha\captcha\RotateCaptcha;
 use clown\captcha\captcha\SlidingCaptcha;
 
 
@@ -45,6 +46,9 @@ class Captcha
             case 'number': // 数字验证码
                 $captcha = new NumberCaptcha($config);
                 break;
+            case 'rotate': // 旋转验证码
+                $captcha = new RotateCaptcha($config);
+                break;
             default:
                 $captcha = new ClickCaptcha($config);
         }
@@ -73,6 +77,9 @@ class Captcha
                 break;
             case 'number': // 数字验证码
                 $captcha = new NumberCaptcha($config);
+                break;
+            case 'rotate': // 旋转验证码
+                $captcha = new RotateCaptcha($config);
                 break;
             default:
                 $captcha = new ClickCaptcha($config);
