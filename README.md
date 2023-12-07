@@ -9,6 +9,7 @@ composer require clown/captcha dev-main
 ##### 		2. 需要准备的
 
 ```
+//在线文档地址: http://blog.sszwl.cn/upload/file/20231207/520c7785f8a5d317312dd491efc398f2.pdf
 1. 需要使用redis拓展
 2. 并在.env目录下至少配置如下参数
 REDIS_HOST = 127.0.0.1
