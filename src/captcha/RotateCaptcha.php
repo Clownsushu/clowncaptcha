@@ -106,7 +106,7 @@ class RotateCaptcha implements Captcha
         //最大值
         $max = $value + $this->config['error_range'];
 
-        if($code > $min && $code < $max){
+        if($code >= $min && $code <= $max){
             $this->redis->del($key);
             return true;
         }

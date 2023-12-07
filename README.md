@@ -1,4 +1,4 @@
-#### 验证码类库
+#### 1. 验证码类库
 
 ##### 	1. 安装
 
@@ -6,27 +6,23 @@
 composer require clown/captcha
 ```
 
-##### 	2. 创建验证码
+##### 	2. 示例代码
 
 ```php
 <?php
-    //实例化验证码类, 可以传参验证码类型 不传默认点选验证码
-    //支持的类型 click 点选 compute 计算类型 sliding 滑块
-    $captcha = \clown\captcha\Captcha();
-	//使用创建验证码, 可以传参字符串, 不传会自动返回生成
-	$key = md5(microtime());
-	$result = $captcha->create($key);
-	//$result为点选验证码时返回内容
-	//[
-	//	"key" => "11d4a596-4e0e-4798-9425-026700292d0f" // 生成的唯一值
-    //	"text" => array:2 [
-    //    	0 => "<梨>"
-    //    	1 => "站"
-    //	]// 点选内容带<>是点击图标 不带是点击文字 
-    //	"base64" => "data:image/png;base64," // 返回的图片内容
-    //	"width" => 350 // 图片宽
-    //	"height" => 200 // 图片高
-	//]
+
+// 创建验证码 支持如下类型
+//number = 数字验证码 
+//compute = 计算验证码 
+//click = 点选验证码 
+//rotate = 选择验证码    
+//sliding = 滑块验证码    
+$captcha = new Captcha('compute');
+
+$result = $captcha->create(md5(microtime()),['length' => 4]);
+
+echo json_encode(['code' => 0, 'msg' => '获取成功', 'data' => $result], JSON_UNESCAPED_UNICODE);
+
             
 ```
 
@@ -34,14 +30,42 @@ composer require clown/captcha
 
 ```php
 <?php
-    //!!!!!!!!
-    //实例化验证码类, 可以传参验证码类型 不传默认点选验证码
-    $captcha = \clown\captcha\Captcha();
-	//使用check方法进行校验, 需要传入创建时候的key 和验证码内容, 校验成功返回true, 否则返回false
-	//点选验证码为: 200,117-246,106;350;200 200,117第一个点击点的x和y坐标, 246,106第二个点击点的x和y坐标, 350是宽, 200是高
-	// 如果, ['unset' => false] 那么, 校验不成功不会删除验证码, 默认是true 删除
-	$result = $captcha->check($key, $info, ['unset' => false]);
+// 校验验证码
+$key = $this->request->get('key', '');
+
+$code = $this->request->get('code', '');
+//number = 数字验证码 
+//compute = 计算验证码 
+//click = 点选验证码 
+//rotate = 选择验证码    
+//sliding = 滑块验证码  
+$captcha = new Captcha('compute');
+//$result = true 验证成功
+//$result = false 验证失败
+$result = $captcha->check($key, $code,['unset' => false]);
 	
             
 ```
+
+
+
+#### 2. 验证码使用
+
+1. 数字验证码
+
+    ![image-20231206152756951](/Users/sushu/Library/Application Support/typora-user-images/image-20231206152756951.png)
+
+2. 计算验证码
+
+    ![image-20231206153300361](/Users/sushu/Library/Application Support/typora-user-images/image-20231206153300361.png)
+
+3. 点选验证码
+
+    ![image-20231206162032176](/Users/sushu/Library/Application Support/typora-user-images/image-20231206162032176.png)
+
+4. 旋转验证码
+
+   ​                                                     ![image-20231207102336137](/Users/sushu/Library/Application Support/typora-user-images/image-20231207102336137.png)  
+
+
 
