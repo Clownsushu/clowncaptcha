@@ -21,6 +21,8 @@ $captcha = new Captcha('compute');
 
 $result = $captcha->create(md5(microtime()),['length' => 4]);
 
+//$result返回的固定参数有: key => 唯一值, base64 => 图片base64后的数据, 额外返回的有点选验证码, 增加了图片宽高参数
+
 echo json_encode(['code' => 0, 'msg' => '获取成功', 'data' => $result], JSON_UNESCAPED_UNICODE);
 
             
@@ -34,10 +36,10 @@ echo json_encode(['code' => 0, 'msg' => '获取成功', 'data' => $result], JSON
 $key = $this->request->get('key', '');
 
 $code = $this->request->get('code', '');
-//number = 数字验证码 
-//compute = 计算验证码 
-//click = 点选验证码 
-//rotate = 选择验证码    
+//number = 数字验证码  需要提交的参数格式:  9662 验证码数字 
+//compute = 计算验证码 需要提交的参数格式:  15 计算的结果 
+//click = 点选验证码 需要提交的参数格式: 200,117-246,106;350;200 200,117第一个点击点的x和y坐标, 246,106第二个点击点的x和y坐标, 350是宽, 200是高
+//rotate = 旋转验证码 需要提交的参数格式:  32 旋转的角度, 思路: 一个固定长度的div, 等比分成360份, 每往右滑动一份, 图片逆时针旋转角度+1
 //sliding = 滑块验证码  
 $captcha = new Captcha('compute');
 //$result = true 验证成功
@@ -76,6 +78,7 @@ $result = $captcha->check($key, $code,['unset' => false]);
 1. 旋转验证码
 
 ```javascript
+<image ref="image" :src="base64" :style="transformStyle"  class="rotate-image" alt="" @touchmove="handleTouchMove" />
 handleTouchMove(event) {
       const containerWidth = this.$refs.container.$el.offsetWidth; // 获取容器宽度
       const touchX = event.touches[0].clientX; // 获取手指触摸点的X坐标
