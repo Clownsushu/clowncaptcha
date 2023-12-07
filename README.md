@@ -1,12 +1,23 @@
 #### 1. 验证码类库
 
-##### 	1. 安装
+##### 			1. 安装
 
-```
+```shell
 composer require clown/captcha dev-main
 ```
 
-##### 	2. 示例代码
+##### 		2. 需要准备的
+
+```
+1. 需要使用redis拓展
+2. 并在.env目录下至少配置如下参数
+REDIS_HOST = 127.0.0.1
+REDIS_PORT = 6379
+REDIS_PASS =
+REDIS_SELECT = 0
+```
+
+##### 			3. 示例代码
 
 ```php
 <?php
@@ -16,7 +27,7 @@ composer require clown/captcha dev-main
 //compute = 计算验证码 
 //click = 点选验证码 
 //rotate = 选择验证码    
-//sliding = 滑块验证码    
+//sliding = 滑块验证码    暂时未完成
 $captcha = new Captcha('compute');
 
 $result = $captcha->create(md5(microtime()),['length' => 4]);
@@ -28,7 +39,7 @@ echo json_encode(['code' => 0, 'msg' => '获取成功', 'data' => $result], JSON
             
 ```
 
-##### 	3. 校验验证码
+##### 			4. 校验验证码
 
 ```php
 <?php
