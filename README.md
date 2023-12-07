@@ -3,7 +3,7 @@
 ##### 	1. 安装
 
 ```
-composer require clown/captcha
+composer require clown/captcha dev-main
 ```
 
 ##### 	2. 示例代码
@@ -65,7 +65,26 @@ $result = $captcha->check($key, $code,['unset' => false]);
 
 4. 旋转验证码
 
-   ​                                                     ![image-20231207102336137](/Users/sushu/Library/Application Support/typora-user-images/image-20231207102336137.png)  
+    ​                                                     ![image-20231207102336137](/Users/sushu/Library/Application Support/typora-user-images/image-20231207102336137.png)  
+
+5. 滑块验证码
 
 
+
+#### 3. 部分前端js
+
+1. 旋转验证码
+
+```javascript
+handleTouchMove(event) {
+      const containerWidth = this.$refs.container.$el.offsetWidth; // 获取容器宽度
+      const touchX = event.touches[0].clientX; // 获取手指触摸点的X坐标
+
+      const touchPercentage = (touchX / containerWidth) * 100; // 计算触摸点的百分比
+      const rotationAngle = (touchPercentage / 360) * 360; // 根据触摸点的百分比计算旋转角度
+      this.rotationAngle = Math.round(rotationAngle); // 更新旋转角度
+      this.code = this.rotationAngle
+      this.transformStyle = `transform: rotate(-${rotationAngle}deg);`; // 设置图片旋转样式
+},
+```
 
