@@ -17,9 +17,6 @@
     "autoload": {
         "psr-4": {
             "clown\\captcha\\": "src/"
-        },
-        "files": [
-
-        ]
+        }
     }
 }
