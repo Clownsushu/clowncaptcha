@@ -19,7 +19,7 @@
             "clown\\captcha\\": "src/"
         },
         "files": [
-            "src/helper.php"
+
         ]
     }
 }
